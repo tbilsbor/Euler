@@ -81,6 +81,10 @@ namespace Euler25
 			double average = sum / increaseCount;
 			double averageFloor = Math.Floor (average);
 
+			// Not solving the problem, just analyzing the sequence for patterns
+			// The number of digits increases every 4 or 5 numbers
+			// This block reveals that there are always 3 or 4 sequences of 5 between every sequence of 4
+
 			int fiveCount = 0;
 			List<int> intervals = new List<int> ();
 			foreach (int sB in stepsBetweenIncreases) {
@@ -93,6 +97,9 @@ namespace Euler25
 					continue;
 				}
 			}
+
+			// And this block reveals that there are always 1 or 2 sequences of 4 in that sequence
+			// between every sequence of 3
 
 			int fourCount = 0;
 			List<int> intervals2 = new List<int> ();
