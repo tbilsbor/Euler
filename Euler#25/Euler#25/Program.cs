@@ -38,7 +38,7 @@ namespace Euler25
 			Stopwatch stopWatch = new Stopwatch ();
 			stopWatch.Start ();
 
-			double PHI = (1 + Math.Sqrt (5)) / 2;
+			//double PHI = (1 + Math.Sqrt (5)) / 2;
 
 			int ANALYSIS_DIGITS = 2000;
 			int DIGITS = 1000; // Find the first Fibonacci number with this many digits
@@ -67,24 +67,32 @@ namespace Euler25
 			int currentValue = 0;
 			double increaseCount = 0;
 			int steps = 0; // Number of steps between each increase
-			List<int> stepsBetweenIncreases = new List<int> ();
+			//List<int> stepsBetweenIncreases = new List<int> ();
 			foreach (int digits in fibDigits) {
 				steps++;
 				if (digits > currentValue) {
 					currentValue = digits;
 					increaseCount++;
 					sum += steps;
-					stepsBetweenIncreases.Add (steps);
+					//stepsBetweenIncreases.Add (steps);
 					steps = 0;
 				}
 			}
 			double average = sum / increaseCount;
-			double averageFloor = Math.Floor (average);
+			//double averageFloor = Math.Floor (average);
+
+			// Multiply the floor of the average by the number of digits to get a lower bound
+
+			//double lowerBound = averageFloor * DIGITS;
+
+			// Actually, just use the average directly, it gets even closer and doesn't go over
+			double lowerBound = Math.Floor (average * DIGITS);
 
 			// Not solving the problem, just analyzing the sequence for patterns
 			// The number of digits increases every 4 or 5 numbers
 			// This block reveals that there are always 3 or 4 sequences of 5 between every sequence of 4
 
+			/*
 			int fiveCount = 0;
 			List<int> intervals = new List<int> ();
 			foreach (int sB in stepsBetweenIncreases) {
@@ -111,22 +119,34 @@ namespace Euler25
 					fourCount = 0;
 				}
 			}
-
-			// Multiply the floor of the average by the number of digits to get a lower bound
-
-			double lowerBound = averageFloor * DIGITS;
+			*/
 
 			// Add that many digits to the Fibonacci array
 
+			/*
 			for (int i = 101; i <= lowerBound; i++) {
 				fibonacci.Add (-1);
 			}
+			*/
 
-			// Calculate that Fibonacci number and the next one using Binet's formula
+			// Brute force the solution: add Fibonacci numbers and start checking the number of digits
+			// once the lower bound is exceeded
 
+			int d = 0;
+			int index = -1;
+			for (int i = ANALYSIS_DIGITS + 1; d <= 1000; i++) {
+				fibonacci.Add (fibonacci [i - 1] + fibonacci [i - 2]);
+				if (i > lowerBound) {
+					d = fibonacci [i].ToString ().Length;
+					if (d >= 1000) {
+						index = i + 1; // +1 because the index of the first Fibonacci number is 0
+						break;
+					}
+				}
+			}
 
 			stopWatch.Stop ();
-			//Console.WriteLine ( + " found in " + stopWatch.ElapsedMilliseconds + " milliseconds");
+			Console.WriteLine (index + " found in " + stopWatch.ElapsedMilliseconds + " milliseconds");
 
 		}
 	}
