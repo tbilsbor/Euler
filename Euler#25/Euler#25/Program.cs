@@ -40,7 +40,7 @@ namespace Euler25
 
 			double PHI = (1 + Math.Sqrt (5)) / 2;
 
-			int ANALYSIS_DIGITS = 100;
+			int ANALYSIS_DIGITS = 2000;
 			int DIGITS = 1000; // Find the first Fibonacci number with this many digits
 
 			List<BigInteger> fibonacci = new List<BigInteger> (); // List of Fibonacci numbers
@@ -63,21 +63,47 @@ namespace Euler25
 			// Calculate the floor of the average number of Fibonacci numbers between increase in
 			// orders of magnitude
 
-			int sum = 0; // Sum of the number of steps between digit increases
+			double sum = 0; // Sum of the number of steps between digit increases
 			int currentValue = 0;
-			int increaseCount = 0;
+			double increaseCount = 0;
 			int steps = 0; // Number of steps between each increase
+			List<int> stepsBetweenIncreases = new List<int> ();
 			foreach (int digits in fibDigits) {
 				steps++;
 				if (digits > currentValue) {
 					currentValue = digits;
 					increaseCount++;
 					sum += steps;
+					stepsBetweenIncreases.Add (steps);
 					steps = 0;
 				}
 			}
 			double average = sum / increaseCount;
 			double averageFloor = Math.Floor (average);
+
+			int fiveCount = 0;
+			List<int> intervals = new List<int> ();
+			foreach (int sB in stepsBetweenIncreases) {
+				if (sB == 5) {
+					fiveCount++;
+				} else if (sB == 4) {
+					intervals.Add (fiveCount);
+					fiveCount = 0;
+				} else {
+					continue;
+				}
+			}
+
+			int fourCount = 0;
+			List<int> intervals2 = new List<int> ();
+			for (int i = 0; i < intervals.Count; i++) {
+				if (intervals [i] == 4) {
+					fourCount++;
+				} else if (intervals [i] == 3) {
+					intervals2.Add (fourCount);
+					fourCount = 0;
+				}
+			}
 
 			// Multiply the floor of the average by the number of digits to get a lower bound
 
@@ -90,6 +116,7 @@ namespace Euler25
 			}
 
 			// Calculate that Fibonacci number and the next one using Binet's formula
+
 
 			stopWatch.Stop ();
 			//Console.WriteLine ( + " found in " + stopWatch.ElapsedMilliseconds + " milliseconds");
