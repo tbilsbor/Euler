@@ -43,8 +43,8 @@ namespace Euler25
 			int ANALYSIS_DIGITS = 2000;
 			int DIGITS = 1000; // Find the first Fibonacci number with this many digits
 
-			List<BigInteger> fibonacci = new List<BigInteger> (); // List of Fibonacci numbers
-			List<int> fibDigits = new List<int> (); // Digits in Fibonacci numbers
+			List<BigInteger> fibonacci = new List<BigInteger> (5000); // List of Fibonacci numbers
+			List<int> fibDigits = new List<int> (5000); // Digits in Fibonacci numbers
 
 			// Initialize Fibonacci numbers and their digits
 
