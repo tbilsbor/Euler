@@ -47,10 +47,10 @@ namespace Euler26
 			Stopwatch stopWatch = new Stopwatch ();
 			stopWatch.Start ();
 
-			int UPPER_BOUND = 1000;
+			int UPPER_BOUND = 1000; // Check reciprocals up to this number
 
-			int longest = -1;
-			int longestVal = -1;
+			int longest = -1; // Denominator of the reciprocal with the longest cycle
+			int longestVal = -1; // Cycle length of the reciprocal with the longest cycle
 			int l = -1;
 			for (int d = 2; d < UPPER_BOUND; d++) {
 				l = CycleLength (d);
@@ -64,20 +64,23 @@ namespace Euler26
 			Console.WriteLine (longest + " found with a cycle of " + longestVal + " in " + 
 				stopWatch.ElapsedMilliseconds + " milliseconds");
 		}
-
+			
 		private static int CycleLength (int denominator) {
+			if (denominator % 2 == 0 || denominator % 5 == 0) { // fast test for divisibility by 2 or 5
+				return -1;
+			}
 			StringBuilder s = new StringBuilder ();
 			List <int> digits = new List<int> ();
 			int numerator = 10;
 			int quotient = -1;
 			int cycleLength = -1;
-			for (int digit = 0; digit < 2000; digit++) {
+			for (int digit = 0; digit < 2000; digit++) { // Manual long division
 				quotient = numerator / denominator;
 				s.Append (quotient);
 				digits.Add (quotient);
 				numerator -= digits [digit] * denominator;
 				if (numerator == 0) {
-					break;
+					return -1;
 				}
 				numerator *= 10;
 			}
@@ -92,6 +95,7 @@ namespace Euler26
 			}
 
 			return cycleLength;
+
 		}
 	}
 }
