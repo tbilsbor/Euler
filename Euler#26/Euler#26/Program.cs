@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.Threading;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Euler26
 {
@@ -65,19 +66,32 @@ namespace Euler26
 		}
 
 		private static int CycleLength (int denominator) {
-			List<int> digits = new List<int> ();
 			StringBuilder s = new StringBuilder ();
+			List <int> digits = new List<int> ();
 			int numerator = 10;
 			int quotient = -1;
-			for (int digit = 0; digit < 1000; digit++) {
+			int cycleLength = -1;
+			for (int digit = 0; digit < 2000; digit++) {
 				quotient = numerator / denominator;
-				digits.Add (quotient);
 				s.Append (quotient);
+				digits.Add (quotient);
 				numerator -= digits [digit] * denominator;
+				if (numerator == 0) {
+					break;
+				}
 				numerator *= 10;
 			}
+				
+			string pattern = @"(\d{2,}?)\1";
+			Regex re = new Regex (pattern);
+			MatchCollection matches = re.Matches (s.ToString ());
+			if (matches.Count == 0) {
+				return -1;
+			} else {
+				cycleLength = (matches [0].Length) / 2;
+			}
 
-			return 0;
+			return cycleLength;
 		}
 	}
 }
