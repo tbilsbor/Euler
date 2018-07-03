@@ -55,9 +55,9 @@ namespace Euler26
 			primes.Add(2);
 			primes.Add (3);
 			bool divisible = false;
-			for (int n = 3; n <= UPPER_BOUND; n += 2) {
-				for (int p = 4; p * p <= n; p++) {
-					if (n % p == 0) {
+			for (int n = 5; n <= UPPER_BOUND; n += 2) {
+				for (int p = 0; p * p <= n && p < primes.Count; p++) {
+					if (n % primes [p] == 0) {
 						divisible = true;
 						break;
 					}
