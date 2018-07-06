@@ -35,10 +35,11 @@ namespace Euler30
 			double number = LOWER_BOUND;
 			while (number <= UPPER_BOUND) {
 				double sum = 0;
-				string digits = number.ToString ();
-				foreach (char c in digits) {
-					int digit = (int) Char.GetNumericValue (c);
+				double digits = number;
+				while (digits > 0) {
+					int digit = (int) digits % 10;
 					sum += Math.Pow (digit, power);
+					digits = Math.Floor (digits / 10);
 				}
 				if (sum == number) {
 					Console.WriteLine ("Found {0}!", number);
