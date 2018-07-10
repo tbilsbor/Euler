@@ -12,26 +12,204 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Euler31
 {
 	class MainClass
 	{
+		public class Obama
+		{
+
+			private List<int> values = new List<int> {  0, 0, 0, 0, 0, 0, 0, 0 }; // current tabulated values
+			private List<int> maxValues = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
+			private List<int> coins = new List<int> { 1, 2, 5, 10, 20, 50, 100, 200 }; // constant values of coins
+
+			private int combinations; // calculated number of combinations
+			private int maxCoin;
+
+			// Constructor: set the number of pence equal to the total amount and combinations to 0
+
+			public Obama (int pence) {
+				values [0] = pence;
+				if (pence >= 200) {
+					maxCoin = 7;
+				} else {
+					for (int i = 0; i < coins.Count; i++) {
+						if (coins [i] > pence) {
+							maxCoin = i - 1;
+							break;
+						}
+					}
+				}
+				this.maxCount ();
+				combinations = 0;
+			}
+
+			// Retrieve combinations value
+
+			public int Combinations {
+				get {
+					return combinations;
+				}
+			}
+
+			private void maxCount () {
+				int pence = values [0];
+				for (int i = maxCoin; i >= 0; i--) {
+					int q = (int)pence / coins [i];
+					maxValues [i] += q;
+					pence -= q * coins [i];
+					if (pence == 0) {
+						break;
+					}
+				}
+			}
+
+			public void Count () {
+				this.Ones ();
+				this.Twos ();
+				this.Fives ();
+				this.Tens ();
+				this.Twenties ();
+				this.Fifties ();
+				this.Hundreds ();
+				this.Twohundreds ();
+			}
+
+			private void Ones () {
+				combinations += 1;
+			}
+
+			private void Twos () {
+				int q = values [0] / 2;
+				if (q > 0) {
+					values [0] -= q * 2;
+					values [1] += q;
+					combinations += q;
+					values [1] -= q;
+					values [0] += q * 2;
+				}
+			}
+
+			private void Fives () {
+				int q = (int)values [0] / 5;
+				for (int d = 1; d <= q; d++) {
+					values [0] -= 5;
+					values [2] += 1;
+					this.Ones ();
+					this.Twos ();
+				}
+				values [0] += 5 * q;
+				values [2] = 0;
+			}
+
+			private void Tens () {
+				int q = (int)values [0] / 10;
+				for (int d = 1; d <= q; d++) {
+					values [0] -= 10;
+					values [3] += 1;
+					this.Ones ();
+					this.Twos ();
+					this.Fives ();
+				}
+				values [0] += 10 * q;
+				values [3] = 0;
+			}
+
+			private void Twenties () {
+				int q = (int)values [0] / 20;
+				for (int d = 1; d <= q; d++) {
+					values [0] -= 20;
+					values [4] += 1;
+					this.Ones ();
+					this.Twos ();
+					this.Fives ();
+					this.Tens ();
+				}
+				values [0] += 20 * q;
+				values [4] = 0;
+			}
+
+			private void Fifties () {
+				int q = (int)values [0] / 50;
+				for (int d = 1; d <= q; d++) {
+					values [0] -= 50;
+					values [4] += 1;
+					this.Ones ();
+					this.Twos ();
+					this.Fives ();
+					this.Tens ();
+					this.Twenties ();
+				}
+				values [0] += 50 * q;
+				values [5] = 0;
+			}
+
+			private void Hundreds () {
+				int q = (int)values [0] / 100;
+				for (int d = 1; d <= q; d++) {
+					values [0] -= 100;
+					values [6] += 1;
+					this.Ones ();
+					this.Twos ();
+					this.Fives ();
+					this.Tens ();
+					this.Twenties ();
+					this.Fifties ();
+				}
+				values [0] += 100 * q;
+				values [6] = 0;
+			}
+
+			private void Twohundreds () {
+				int q = (int)values [0] / 200;
+				for (int d = 1; d <= q; d++) {
+					values [0] -= 200;
+					values [7] += 1;
+					this.Ones ();
+					this.Twos ();
+					this.Fives ();
+					this.Tens ();
+					this.Twenties ();
+					this.Fifties ();
+					this.Hundreds ();
+				}
+				values [0] += 200 * q;
+				values [7] = 0;
+			}
+		}
+
+		//combine code; onesandtwos; fivesandup
+		//cleanup shit you no longer need like maxvalue and maybe even values
+
 		public static void Main (string[] args)
 		{
 			Console.WriteLine ("Running!");
-			Stopwatch stopWatch = new Stopwatch ();
-			stopWatch.Start ();
 
-			int AMOUNT = 10;
-			List<int> coins = new List<int> { 1, 2, 5, 10, 20, 50, 100, 200 };
-			List<int> combination = new List<int> ();
-			int combinations = 0;
+			while (true) {
+				Console.WriteLine ("Pence to count: ");
+				string rs = Console.ReadLine ();
+				if (rs == "exit") {
+					break;
+				}
 
-			stopWatch.Stop ();
-			Console.WriteLine ("{0} combinations found in {1} milliseconds", combinations.Count, 
-				stopWatch.ElapsedMilliseconds);
+				int STARTING_AMOUNT = int.Parse (rs);
 
+				Stopwatch stopWatch = new Stopwatch ();
+				if (stopWatch.IsRunning) {
+					stopWatch.Restart ();
+				} else {
+					stopWatch.Start ();
+				}
+
+				Obama obama = new Obama (STARTING_AMOUNT);
+				obama.Count ();
+
+				stopWatch.Stop ();
+				Console.WriteLine ("{0} combinations found in {1} milliseconds", obama.Combinations, 
+					stopWatch.ElapsedMilliseconds);
+			}
 		}
 	}
 }
