@@ -22,13 +22,118 @@ namespace Euler31
 		{
 
 			private List<int> values = new List<int> {  0, 0, 0, 0, 0, 0, 0, 0 }; // current tabulated values
+			private List<int> coins = new List<int> { 1, 2, 5, 10, 20, 50, 100, 200 }; // constant values of coins
+
+			private int combinations; // calculated number of combinations
+			private int maxCoin; // Largest coin value
+
+			// Constructor: set the first value in the values array, find the max coin, set starting combinations
+
+			public Obama (int pence) {
+				values [0] = pence;
+				if (pence >= 200) {
+					maxCoin = 7;
+				} else {
+					for (int i = 0; i < coins.Count; i++) {
+						if (coins [i] > pence) {
+							maxCoin = i - 1;
+							break;
+						}
+					}
+				}
+				combinations = 0;
+			}
+
+			// Retrieve combinations value
+
+			public int Combinations {
+				get {
+					return combinations;
+				}
+			}
+
+			// Do the thing
+
+			public void Count () {
+				for (int c = 0; c <= maxCoin; c++) {
+					Count (c);
+				}
+			}
+
+			private void Count (int coin) {
+
+				if (coin == 0) {
+					combinations += 1;
+				}
+
+				if (coin == 1) {
+					int q = values [0] / 2;
+					if (q > 0) {
+						values [0] -= q * 2;
+						values [1] += q;
+						combinations += q;
+						values [1] -= q;
+						values [0] += q * 2;
+					}
+				}
+
+				if (coin >= 2) {
+					int cv = coins [coin];
+					int q = (int)values [0] / cv;
+					for (int d = 1; d <= q; d++) {
+						values [0] -= cv;
+						values [coin] += 1;
+						for (int c = 0; c < coin; c++) {
+							Count (c);
+						}
+					}
+					values [0] += cv * q;
+					values [coin] = 0;
+				}
+			}
+		}
+
+		public static void Main (string[] args)
+		{
+			Console.WriteLine ("Running!");
+
+			while (true) {
+				Console.WriteLine ("Pence to count: ");
+				string rs = Console.ReadLine ();
+				if (rs == "exit") {
+					break;
+				}
+
+				int STARTING_AMOUNT = int.Parse (rs);
+
+				Stopwatch stopWatch = new Stopwatch ();
+				if (stopWatch.IsRunning) {
+					stopWatch.Restart ();
+				} else {
+					stopWatch.Start ();
+				}
+
+				Obama obama = new Obama (STARTING_AMOUNT);
+				obama.Count ();
+
+				stopWatch.Stop ();
+				Console.WriteLine ("{0} combinations found in {1} milliseconds", obama.Combinations, 
+					stopWatch.ElapsedMilliseconds);
+			}
+		}
+	}
+}
+
+/*
+		public class Obama
+		{
+
+			private List<int> values = new List<int> {  0, 0, 0, 0, 0, 0, 0, 0 }; // current tabulated values
 			private List<int> maxValues = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
 			private List<int> coins = new List<int> { 1, 2, 5, 10, 20, 50, 100, 200 }; // constant values of coins
 
 			private int combinations; // calculated number of combinations
 			private int maxCoin;
-
-			// Constructor: set the number of pence equal to the total amount and combinations to 0
 
 			public Obama (int pence) {
 				values [0] = pence;
@@ -45,8 +150,6 @@ namespace Euler31
 				this.maxCount ();
 				combinations = 0;
 			}
-
-			// Retrieve combinations value
 
 			public int Combinations {
 				get {
@@ -179,37 +282,4 @@ namespace Euler31
 				values [7] = 0;
 			}
 		}
-
-		//combine code; onesandtwos; fivesandup
-		//cleanup shit you no longer need like maxvalue and maybe even values
-
-		public static void Main (string[] args)
-		{
-			Console.WriteLine ("Running!");
-
-			while (true) {
-				Console.WriteLine ("Pence to count: ");
-				string rs = Console.ReadLine ();
-				if (rs == "exit") {
-					break;
-				}
-
-				int STARTING_AMOUNT = int.Parse (rs);
-
-				Stopwatch stopWatch = new Stopwatch ();
-				if (stopWatch.IsRunning) {
-					stopWatch.Restart ();
-				} else {
-					stopWatch.Start ();
-				}
-
-				Obama obama = new Obama (STARTING_AMOUNT);
-				obama.Count ();
-
-				stopWatch.Stop ();
-				Console.WriteLine ("{0} combinations found in {1} milliseconds", obama.Combinations, 
-					stopWatch.ElapsedMilliseconds);
-			}
-		}
-	}
-}
+		*/

@@ -2,36 +2,11 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Euler#31/Program.cs">
     <Files>
-      <File FileName="Euler#31/Program.cs" Line="81" Column="23" />
+      <File FileName="Euler#31/Program.cs" Line="55" Column="19" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>this.values[0]</Value>
-          <Value>this.values[1]</Value>
-          <Value>this.values[2]</Value>
-          <Value>this.values[3]</Value>
-          <Value>this.values[4]</Value>
-          <Value>this.values[5]</Value>
-          <Value>this.values[6]</Value>
-          <Value>this.values[7]</Value>
-          <Value>combos</Value>
-          <Value>this.Combinations</Value>
-          <Value>cv</Value>
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint enabled="false" file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="87" column="1" />
-      <Breakpoint enabled="false" file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="81" column="1" />
-      <Breakpoint enabled="false" file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="84" column="1" />
-      <Breakpoint enabled="false" file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="90" column="1" />
-      <Breakpoint enabled="false" file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="77" column="1" />
-      <Breakpoint enabled="false" file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="72" column="1" />
-      <Breakpoint file="/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#31/Euler#31/Program.cs" line="76" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
