@@ -1,0 +1,13 @@
+﻿<Properties StartupItem="Euler#33/Euler#33.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Euler#33/Program.cs">
+    <Files>
+      <File FileName="Euler#33/Program.cs" Line="69" Column="5" />
+      <File FileName="../Euler#31/Euler#31/Program.cs" Line="119" Column="5" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
