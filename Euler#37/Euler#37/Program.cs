@@ -49,6 +49,14 @@ namespace Euler37
 					foreach (char c in n.ToString ()) {
 						primeS.Append (c);
 					}
+					int firstDigit = Int32.Parse (primeS [0].ToString ());
+					int lastDigit = Int32.Parse (primeS [primeS.Length - 1].ToString ());
+					if (!primes.Contains (firstDigit) || !primes.Contains (lastDigit)) {
+						isTruncatable = false;
+						n += 2;
+						continue;
+					}
+
 					while (primeS.Length > 1) {
 						primeS.Remove (0, 1);
 
