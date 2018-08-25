@@ -1,0 +1,20 @@
+﻿<Properties StartupItem="Euler#43/Euler#43.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Euler#43/Program.cs">
+    <Files>
+      <File FileName="Euler#43/Program.cs" Line="59" Column="28" />
+      <File FileName="../Euler#38.2/Euler#38.2/Program.cs" Line="65" Column="4" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State>
+          <Value>permutationValue</Value>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

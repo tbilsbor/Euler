@@ -1,0 +1,17 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Euler#40", "Euler#40\Euler#40.csproj", "{CDF8A6AB-E904-4163-9564-F12CDB0595C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDF8A6AB-E904-4163-9564-F12CDB0595C0}.Debug|x86.ActiveCfg = Debug|x86
+		{CDF8A6AB-E904-4163-9564-F12CDB0595C0}.Debug|x86.Build.0 = Debug|x86
+		{CDF8A6AB-E904-4163-9564-F12CDB0595C0}.Release|x86.ActiveCfg = Release|x86
+		{CDF8A6AB-E904-4163-9564-F12CDB0595C0}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+EndGlobal

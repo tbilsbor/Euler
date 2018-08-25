@@ -1,0 +1,5 @@
+/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#39/Euler#39/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#39/Euler#39/bin/Debug/Euler#39.exe.mdb
+/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#39/Euler#39/bin/Debug/Euler#39.exe
+/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#39/Euler#39/obj/x86/Debug/Euler#39.exe
+/Users/toddbilsborough/Desktop/Reference/Programming Projects/Euler/Euler#39/Euler#39/obj/x86/Debug/Euler#39.exe.mdb
